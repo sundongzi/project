@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # study-vue
 
 > A Vue.js project
@@ -19,3 +20,6 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# study
+>>>>>>> c056340280d0dc0977767f9a0e8411192ec0b12c
