@@ -1,0 +1,25 @@
+:root {
+	/* Colors  在线颜色命名工具：http://chir.ag/projects/name-that-color/#6195ED */
+	--black: #000000;
+	--dove-gray: #666666;
+	--white: #FFFFFF;
+	--mine-shaft-d: #333333;
+	--mine-shaft: #3C3C3C;
+	--emperor: #515151;
+	--mercury: #E1E1E1;
+	--mercury-l: #E2E2E2;
+	--mercury-s: #E8E8E8;
+	--gallery: #ECECEC;
+	--concrete: #F2F2F2;       /* RGB(242, 242, 242) */
+	--alto: #D0D0D0;           /* RGB(208, 208, 208) */
+	--emperor: #505050;        /* RGB(80, 80, 80) */
+	--dodger-blue: #48B1FF;    /* RGB(72,177,255) */
+	--atlantis: #5BDC3A;       /* RGB(91,220,58) */
+	--sunglow: #FFC439;        /* RGB(255,196,57) */
+	--radical-red: #FF4758;    /* RGB(255,71,88) */
+	--heliotrope: #E872FD;     /* RGB(232,114,253) */
+	--red: #FF0000;            /* RGB(255,0,0) */
+	--alabaster: #F9F9F9;
+	--wild-sand: #F6F6F6;
+	--alto-d: #DFDFDF;
+}

@@ -1,0 +1,9 @@
+@import './common.css';
+.header-container {
+    height: 100%;
+}
+
+.el-menu--horizontal {
+    display: flex;
+    justify-content: space-between;
+}

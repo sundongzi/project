@@ -1,0 +1,64 @@
+@define-extend clearfix {
+ 	*display: inline-block;
+  	_height: 1%;
+}
+@define-extend clearfix:after {
+ 	display: block;
+	height: 0;
+	clear: both;
+	font-size: 0;
+	visibility: hidden;
+	content: "";
+}
+
+/*文字超长省略号*/
+@define-extend ga-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/*块元素-水平垂直居中*/
+@define-extend ga-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/*块元素-水平居中*/
+@define-extend ga-horizontal {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+/*块元素- 垂直方向居中*/
+@define-extend ga-vertical {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* box */
+@define-extend idss-pannel {
+	border: var(--border);
+	border-radius: 3px;
+	background-color: var(--bg-pannel-color);
+	width: 100%;
+	height: 100%;
+}
+
+@define-extend idss-border {
+	border: 1px solid var(--box-border-color);
+	border-radius: 3px;
+}
+
+/* flex常用布局 */
+@define-extend idss-flex {
+	display: flex;
+}
+@define-extend idss-flex--column {
+	display: flex;
+	flex-direction: column;
+}

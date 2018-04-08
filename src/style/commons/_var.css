@@ -1,0 +1,136 @@
+@import './_color.css';
+:root {
+    /* Colors - 告警颜色/主要颜色
+  -------------------------- ff0000 */
+    --color-emergency: #ff0000;
+    --color-high: #ff5e00;
+    --color-medium: #FFC439;
+    --color-low: #48B1FF;
+    --color-active: #cccab2;
+    --color-highlight: var(--dodger-blue);
+    /* 表格高亮颜色 */
+    --color-primary: var(--dodger-blue);
+    /* 激活,hover,active */
+    --corlor-error: var(--red);
+    --color-body-bg: #F3F7FA;
+    --bg-pannel-color: #FFFFFF;
+    --color-rising: #F76741;
+    /*上升箭头*/
+    --color-drop: #056D9B;
+    /*下降箭头*/
+    --color-disabled: #b4bccc;
+    /*禁用按钮颜色*/
+    /* Font
+  -------------------------- */
+    --font-color: var(--black);
+    --font-sec-color: #666;
+    /* Border
+  -------------------------- */
+    --border: 1px solid #E5EEF5;
+    --border-radius: 3px;
+    --box-border-color: #E2E2E2;
+    /* Icon
+  -------------------------- */
+    --icon-color: #BABABA;
+    --icon-light-color: #949494;
+    /* Pannel
+  -------------------------- */
+    --pannel-icon-color: #ADADAD;
+    --pannel-icon-bg-color: #E2E2E2;
+    /* Button
+  -------------------------- */
+    --button-border-color: #C0C0C0;
+    --button-border-color-active: var(--color-primary);
+    --button-txt-dange-color: #E70E0E;
+    --button-txt-success-color: #10D769;
+    --button-icon-disabled-color: var(--color-disabled);
+    /* Pagination 分页
+  -------------------------- */
+    --pagination-border: 1px solid #dfe6ec;
+    --pagination-bg-color: #F3F7F9;
+    /* Select
+  -------------------------- */
+    --select-icon-color: #bababa;
+    /* Table
+  -------------------------- */
+    --table-row-highlight-color: #c9e5f5;
+    --table-header-bg-color: #F3F7F9;
+    --table-border: 1px solid #dfe6ec;
+    /* container (chart)
+  -------------------------- */
+    --container-width: 100%;
+    --container-min-width: 1240px;
+    --container-font-nodata-color: #5e7382;
+    --container-title-bg-color: linear-gradient(to bottom, #F8FAFB, #EDF1F3);
+    --container-title-border: var(--border);
+    /* header-logo
+  -------------------------- */
+    --header-bg-color: var(--mine-shaft-d);
+    --header-txt-color: var(--white);
+    --header-line-light: #444;
+    --header-line-dark: #222;
+    /* nav-menu 菜单组
+  -------------------------- */
+    --menu-bg-odd-color: var(--concrete);
+    --menu-bg-even-color: var(--gallery);
+    --menu-bg-color: linear-gradient(to bottom, #F8FAFB, #ECECEC);
+    --menu-bg-active-color: var(--emperor);
+    --menu-list-bg-color: #F2F2F2;
+    --menu-box-shadow: 1px 1px 10px #999;
+    --menu-txt-color: #333;
+    --menu-border: 1px solid #E6E6E6;
+    --menu-txt-active-color: var(--white);
+    --submenu-border: 1px solid var(--alto);
+    --submenu-selected-color: var(--emperor);
+    /*四级菜单*/
+    --subtab-font-color: var(--black);
+    --subtab-bg-color: var(--white);
+    --subtab-selected-bg-color: var(--mercury-s);
+    --subtab-selected-font-color: var(--black);
+    --subtab-border-color: var(--alto-d);
+    /* 单值
+  -------------------------- */
+    --single-bg-color: linear-gradient(to bottom, #46BCFF, #65CEF6);
+    --single-txt-color: #fff;
+    --single-siring: var(--color-rising);
+    --single-drop: var(--color-drop);
+    --single-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    --single-icon-color: #858585;
+    --single-icon-active-color: var(--color-primary);
+    --single-icon-bg-color: #F2F2F2;
+    --single-border-color: #DFDFDF;
+    --single-border-radius: var(--border-radius);
+    --single-popover-bg-color: #F4F4F4;
+    --single-popover-border-color: #D3D3D3;
+    --single-popover-cancel-color: #EAEBEC;
+    --single-popover-sure-color: #F4F4F4;
+    /* Color bar
+  -------------------------- */
+    --colorBar-font-color: #fff;
+    --colorBar-border-radius: var(--border-radius);
+    /* widget
+  -------------------------- */
+    --widget-title-bg-color: linear-gradient(to bottom, #F8FAFB, #EDF1F3);
+    --widget-border: 1px solid #DDE7ED;
+    --widget-icon-color: #ACACAC;
+    --widget-add-color: var(--emperor);
+    /* 威胁分析 - 环境 -资产
+  -------------------------- */
+    --assetinfo-circle-bg-color: #F3F3F3;
+    --assetinfo-circle-color-1: #00EDB8;
+    --assetinfo-circle-color-2: #FFF008;
+    --assetinfo-circle-color-3: #ED8600;
+    --assetinfo-circle-color-4: #0091ED;
+    --assetinfo-circle-color-5: #ED0500;
+    /* 搜索
+  -------------------------- */
+    --search-popover-title-bg: rgba(244, 244, 244, 1);
+    --search-tab-bg-color: rgba(232, 232, 232, 1);
+    /* z-index 等级控制
+  popover( 2000开始累加) > menu > loadding
+  ----------------------------------*/
+    --loading-zindex: 1000;
+    --menu-zindex: 2000;
+    --alerm-loading-zindex: 2500;
+    /*特殊控制，popover默认显示，所以loading层级应该大于popover*/
+}

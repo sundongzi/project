@@ -1,0 +1,242 @@
+{
+  "status": "success",
+  "content": [
+    {
+      "name": "网络IDS",
+      "id": 1,
+      "type": "/IDS/Network",
+      "value": [
+        {
+          "key": "3",
+          "name": "紧急",
+          "value": 120
+        },
+        {
+          "key": "2",
+          "name": "高",
+          "value": 100
+        },
+        {
+          "key": "1",
+          "name": "中",
+          "value": 50
+        },
+        {
+          "key": "0",
+          "name": "低",
+          "value": 10
+        }
+      ],
+      "key": "1"
+    },
+    {
+      "name": "外部防火墙",
+      "id": 16,
+      "type": "/NetworkEquipment/Firewall",
+      "value": [
+        {
+          "key": "3",
+          "name": "紧急",
+          "value": 20
+        },
+        {
+          "key": "2",
+          "name": "高",
+          "value": 100
+        },
+        {
+          "key": "1",
+          "name": "中",
+          "value": 150
+        },
+        {
+          "key": "0",
+          "name": "低",
+          "value": 10
+        }
+      ],
+      "key": "2"
+    },
+    {
+      "name": "VPN",
+      "id": 17,
+      "type": "/VPN",
+      "value": [
+        {
+          "name": "高",
+          "key": "2",
+          "value": 11
+        }
+      ],
+      "key": "3"
+    },
+    {
+      "name": "Ext",
+      "id": 3,
+      "type": "/IDS/Host",
+      "value": [
+        {
+          "key": "3",
+          "name": "紧急",
+          "value": 20
+        },
+        {
+          "key": "2",
+          "name": "高",
+          "value": 100
+        },
+        {
+          "key": "1",
+          "name": "中",
+          "value": 50
+        },
+        {
+          "key": "0",
+          "name": "低",
+          "value": 110
+        }
+      ],
+      "key": "4"
+    },
+    {
+      "name": "WAF",
+      "id": 2,
+      "type": "/IDS/Network/WAF",
+      "value": [
+        {
+          "key": "3",
+          "name": "紧急",
+          "value": 20
+        },
+        {
+          "key": "2",
+          "name": "高",
+          "value": 100
+        },
+        {
+          "key": "1",
+          "name": "中",
+          "value": 150
+        },
+        {
+          "key": "0",
+          "name": "低",
+          "value": 10
+        }
+      ],
+      "key": "5"
+    },
+    {
+      "name": "网络设备",
+      "id": 13,
+      "type": "/NetworkEquipment",
+      "value": [
+        {
+          "key": "3",
+          "name": "紧急",
+          "value": -1
+        },
+        {
+          "key": "2",
+          "name": "高",
+          "value": 2
+        },
+        {
+          "key": "1",
+          "name": "中",
+          "value": 150
+        },
+        {
+          "key": "0",
+          "name": "低",
+          "value": 10
+        }
+      ],
+      "key": "6"
+    },
+    {
+      "name": "WEB系统",
+      "id": 9,
+      "type": "/Application/WEBServer",
+      "value": [{
+        "key": "1",
+        "name": "中",
+        "value": 1500
+      }, {
+        "key": "0",
+        "name": "低",
+        "value": 15
+      }],
+      "key": "7"
+    },
+    {
+      "name": "内部防火墙",
+      "id": 16,
+      "type": "/NetworkEquipment/Firewall",
+      "value": [{
+        "key": "0",
+        "name": "低",
+        "value": 10
+      }],
+      "key": "8"
+    },
+    {
+      "name": "主机IDS",
+      "id": 3,
+      "type": "/IDS/Host",
+      "value": [
+        {
+          "key": "3",
+          "name": "紧急",
+          "value": 20
+        },
+        {
+          "key": "2",
+          "name": "高",
+          "value": 100
+        },
+        {
+          "key": "1",
+          "name": "中",
+          "value": 150
+        },
+        {
+          "key": "0",
+          "name": "低",
+          "value": 10
+        }
+      ],
+      "key": "9"
+    },
+    {
+      "name": "DNS服务",
+      "id": 10,
+      "type": "/Application/DNSServer",
+      "value": [
+        {
+          "key": "3",
+          "name": "紧急",
+          "value": 120
+        },
+        {
+          "key": "2",
+          "name": "高",
+          "value": 100
+        },
+        {
+          "key": "1",
+          "name": "中",
+          "value": 50
+        },
+        {
+          "key": "0",
+          "name": "低",
+          "value": 10
+        }
+      ],
+      "key": "10"
+    }
+  ],
+  "message": "获取属性名称成功！",
+  "errorCode": null
+}
