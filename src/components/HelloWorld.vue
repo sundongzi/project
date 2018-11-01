@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <canvas ref="canvas" width="1200" height="500"></canvas>
     <!-- <span>
       <img :src="authCodeSrc" @click="getAuthCode" alt="authCode">
     </span> -->
@@ -48,6 +49,7 @@
 <script>
 import {text} from './hello.js'
 import Immutable from 'immutable'
+import echarts from 'echarts'
 export default {
   name: 'HelloWorld',
   data () {
@@ -69,11 +71,12 @@ export default {
       })
     },
     init () {
-      let val = this.throttle(this.ajaxFn, 500)
-      let ipt = this.$refs.ipt.$el
-      ipt.addEventListener('keyup', (e) => {
-        val(e.target.value)
-      })
+      echarts.init(this.$refs['canvas'])
+      // let val = this.throttle(this.ajaxFn, 500)
+      // let ipt = this.$refs.ipt.$el
+      // ipt.addEventListener('keyup', (e) => {
+      //   val(e.target.value)
+      // })
     },
     ajaxFn (param) {
       console.log('ppp', param)
