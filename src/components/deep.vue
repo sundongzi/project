@@ -20,7 +20,7 @@ export default {
       objs: {
         a: {
           b: {
-            c: 1
+            c: 1111
           }
         }
       }
