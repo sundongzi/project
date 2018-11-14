@@ -4,6 +4,19 @@ const http = require('http')
 const path = require('path')
 const jsonfile = require('jsonfile')
 const server = http.createServer(app.callback())
+app.use(async (ctx) => {
+  let data
+  let filePath = path.join(__dirname, './test.json')
+  data = jsonfile.readFileSync(filePath)
+  console.log('datdta', data)
+  ctx.set('Content-Type', 'application/json')
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, 3000);
+  })
+  ctx.body = data
+})
 // const io = require('socket.io')(server)
 // io.on('connection', socket => {
 //   socket.on('message', function(msg) {
@@ -13,14 +26,22 @@ const server = http.createServer(app.callback())
 //   })
 // })
 // console.log('服务端启动')
-// server.listen(3000)
+const port = 8080
+server.listen(port)
+const SYSTEM = '系统'
+const WebSocketServer = require('websocket').server
+const wss = new WebSocketServer()
+wss.on('connection', (socket) => {
+  let username
+  console.log('连接成功');
+  socket.on('message', (msg) => {
+    if (username) {
 
-const WebSocketServer = require('ws').Server
-const wss = new WebSocketServer({ port: 3000 })
-wss.on('connection', function(socket) {
-    console.log('连接成功');
-    socket.on('message', function(msg) {
-        console.log('接收到客户端消息： ' + msg)
-        socket.send('服务器响应： ' + msg)
-    })
+    } else {
+      username = msg
+
+    }
+    // console.log('接收到客户端消息： ' + msg)
+    socket.send('11111')
+  })
 })

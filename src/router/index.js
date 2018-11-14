@@ -7,7 +7,7 @@ import deep from '@/components/deep'
 import design from '@/components/design'
 import form from '@/components/form'
 import socket from '@/websocket/socket.vue'
-
+import classComponent from '@/components/class.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +46,11 @@ export default new Router({
       path: '/socket',
       name: 'Socket',
       component: socket
+    },
+    {
+      path: '/class',
+      name: 'Class',
+      component: classComponent
     }
   ]
 })

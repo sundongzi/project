@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  // var SingleTon = function (name) {
+  // this.name = name
+  // this.instance = null;
+  // }
+  // SingleTon.prototype.getName = function () {
+  //   console.log(this.name)
+  // }
+  // SingleTon.getInstance = function (name) {
+  //   console.log('instance', this.instance)
+  //   if(!this.instance){
+  //     this.instance = new SingleTon(name)
+  //   }
+  // }
+  // var test = SingleTon.getInstance('sun')
+  // var test1 = SingleTon.getInstance('dong')
+  // console.log('true', test === test1)
+  // var test2 = SingleTon.getInstance('dongd')
+
+  // var obj1 = {
+  //   name: 'sundong'
+  // }
+  // var obj2 = {
+  //   name: 'WADE'
+  // }
+  // window.name = 'window'
+  // var getName = function(){
+  //   console.log('this', this.name)
+  // }
+  // getName()
+
+//   var mult = (function() {
+//     var cache = {}
+//     return function() {
+//         var args = Array.prototype.join.call(arguments, ",")
+//         if(args in cache) {
+//             return cache[args]
+//         }
+//         var a = 1
+//         for(var i = 0, l = arguments.length; i < l; i++) {
+//             a = a * arguments[i]
+//         }
+//         return cache[args] = a
+//     }
+// })()
+// console.log(mult(1,2,3))
+// console.log(mult(1,2,3,4))
+
+// var obj = {name: 'sundong'}
+// var A = function (){}
+// A.prototype = obj
+// var newObj = new A()
+// console.log(newObj.__proto__ === obj)
+
+// function foo() {
+//     console.log(this.a)        // this指向window
+// }
+// var fn = (function bar() {
+//     var a = 1
+//     var self = this
+//     return function bar () {
+//       console.log('this', self)
+//     }
+// })()
+// fn()
+
+// var obj = {
+//     name: "sundong"
+// };
+// var func = function(a, b, c) {
+//     console.log(this.name);
+//     console.log([a, b, c])
+// }.bind(obj, 1, 2);
+
+// func(3)
+var lazyload = function() {
+    console.log(1);
+    lazyload = function() {
+        console.log(2);
+    }
+    return lazyload();
+}
+// lazyload()
+
+var preload = (function() {
+    console.log(3);
+    preload = function() {
+        console.log(4);
+    };
+    return preload;
+})();
+// preload()
+</script>
