@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin:0;
+      padding:0;
+    }
+    canvas{
+      border:1px solid red
+    }
+  </style>
+</head>
+<body>
+<img src="../assets/logo.png" alt="" width="300" height="300"><br>
+<canvas id="canvas" width="300" height="300"></canvas>
+</body>
+</html>
+<script>
+  var canvas = document.querySelector("#canvas")
+  var ctx = canvas.getContext("2d");
+/* 绘制矩形  */
+function rectAngledraw(){
+    //绘制矩形
+    ctx.fillRect (10, 10, 100, 100);
+    ctx.clearRect(20,20, 80, 80)
+    ctx.strokeRect (30, 30, 60, 60);
+
+}
+// rectAngledraw()  // 绘制矩形
+
+/* 绘制三角形 */
+function triangleDraw() {
+    ctx.beginPath();  // 新建一条路径
+    ctx.moveTo(50,50);  // 把画笔移动到指定坐标
+    ctx.lineTo(200,50);  // 绘制一条从当前位置到指定坐标（200，50）的直线
+    ctx.lineTo(200,200)
+    // ctx.closePath();  // 闭合路径  会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+    // ctx.stroke();  // 绘制路径
+    ctx.fill() //填充闭合区域。如果path没有闭合，则fill()会自动闭合路径。
+}
+// triangleDraw() // 绘制三角形
+
+
+/*  绘制圆弧（方式一）  */
+function roundDraw () {
+  ctx.beginPath();
+    ctx.arc(50, 50, 40, 0, Math.PI / 2, false);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(150, 50, 40, 0, -Math.PI / 2, true);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(50, 150, 40, -Math.PI / 2, Math.PI / 2, true);
+    ctx.fill();
+}
+// roundDraw()
+
+/*  绘制圆弧（方式二） */
+
+function roundDraw2(){
+    ctx.beginPath();
+    ctx.moveTo(50, 50);
+    ctx.arcTo(200, 50, 200, 200, 100);
+    ctx.stroke();
+}
+// roundDraw2()
+
+/*  绘制二次贝塞尔曲线  */
+function Bessel2() {
+  ctx.beginPath();
+  ctx.moveTo(75,25);
+  ctx.quadraticCurveTo(25,25,25,62.5);
+  ctx.quadraticCurveTo(25,100,50,100);
+  ctx.quadraticCurveTo(50,120,30,125);
+  ctx.quadraticCurveTo(60,120,65,100);
+  ctx.quadraticCurveTo(125,100,125,62.5);
+  ctx.quadraticCurveTo(125,25,75,25);
+  ctx.stroke();
+}
+// Bessel2()
+
+/*  三次贝塞尔曲线  */
+function Bessel3(){
+  ctx.fillStyle = 'blue'
+  ctx.beginPath();
+  ctx.moveTo(75,40);
+  ctx.bezierCurveTo(75,37,70,25,50,25);
+  ctx.bezierCurveTo(20,25,20,62.5,20,62.5);
+  ctx.bezierCurveTo(20,80,40,102,75,120);
+  ctx.bezierCurveTo(110,102,130,80,130,62.5);
+  ctx.bezierCurveTo(130,62.5,130,25,100,25);
+  ctx.bezierCurveTo(85,25,75,37,75,40);
+  ctx.fill();
+}
+// Bessel3()
+
+/*  样式  */
+function style () {
+  ctx.fillStyle = 'red'
+  ctx.fillRect (10, 10, 55, 50);
+
+  ctx.strokeStyle = 'green';
+  ctx.lineWidth = 6;
+  ctx.strokeRect (30, 30, 55, 50);
+
+  ctx.beginPath();
+  ctx.moveTo(50,50)
+  ctx.lineTo(200,200)
+  ctx.lineWidth = 20
+  ctx.lineCap = 'round';
+  ctx.stroke()
+}
+// style()
+
+/*  线宽  */
+function lineWid () {
+  for (let i = 0; i < 10; i++){
+    ctx.lineWidth = 1+i
+    ctx.beginPath()
+    ctx.moveTo(5+i*14,5)
+    ctx.lineTo(5+i*14,140)
+    ctx.stroke()
+  }
+}
+// lineWid()
+
+/*  虚线  */
+function dashed () {
+  ctx.setLineDash([10, 5]);  // [实线长度, 间隙长度]
+  ctx.lineDashOffset = 10;  // 属性设置起始偏移量(float精度的数字)
+  ctx.beginPath();
+  ctx.moveTo(0,100);
+  ctx.lineTo(400, 100);
+  ctx.stroke();
+}
+// dashed()
+
+
+/*  文字阴影  */
+function shadow () {
+  ctx.shadowOffsetX = 20  // 向右延伸
+  ctx.shadowOffsetY = 2   // 向下延伸
+  ctx.shadowBlur = 10
+  ctx.shadowColor = "rgba(0, 0, 0, 0.5)"
+  ctx.font = "20px Times New Roman"
+  ctx.fillStyle = "Black"
+  ctx.fillText("Sun Dong", 5, 30);
+}
+// shadow()
+
+/* 文本  */
+function text () {
+  ctx.font = "10px sans-serif"
+  ctx.textAlign = 'center'
+  // ctx.textBaseline = "top"
+  // ctx.fillText("今天周五啦", 10, 100);
+  ctx.fillText('今天周五啦', 100, 120)
+  ctx.textAlign = "left"
+  ctx.fillText('明天周六啦', 100, 100)
+  // ctx.direction = 'rtl'  存在兼容性
+  // ctx.strokeText("今天周五啦", 10, 200)
+}
+// text()
+
+
+/*  预测量文本宽度  */
+function textWid () {
+  // ctx.font = '16px Arial'
+  let text = ctx.measureText('guanan')
+  console.log(text.width) // 33.869964599609375
+}
+// textWid()
+
+/*  绘制图片   */
+function createImg(){
+  var img = document.querySelector("img");
+  ctx.drawImage(img, 0, 0,200,200);
+  // ctx.drawImage(img,0,0,50,50,10,10,50,50)
+}
+
+document.querySelector("img").onclick = function (){
+  createImg();
+}
+
+/*  状态保存和恢复  */
+function saveAndRestore () {
+  ctx.fillRect(0, 0, 150, 150);   // 使用默认设置绘制一个矩形
+  ctx.save();                  // 保存默认状态
+
+  ctx.fillStyle = 'red'       // 在原有配置基础上对颜色做改变
+  ctx.fillRect(15, 15, 120, 120); // 使用新的设置绘制一个矩形
+
+  ctx.save();                  // 保存当前状态
+  ctx.fillStyle = '#FFF'       // 再次改变颜色配置
+  ctx.fillRect(30, 30, 90, 90);   // 使用新的配置绘制一个矩形
+
+  ctx.restore();               // 重新加载之前的颜色状态
+  ctx.fillRect(45, 45, 60, 60);   // 使用上一次的配置绘制一个矩形
+
+  ctx.restore();               // 加载默认颜色配置
+  ctx.fillRect(60, 60, 30, 30);   // 使用加载的配置绘制一个矩形
+}
+// saveAndRestore()
+
+/*  translate移动  */
+function distortion() {
+  ctx.save(); //保存坐原点平移之前的状态
+  ctx.translate(100, 100);
+  ctx.strokeRect(0, 0, 100, 100)
+  ctx.restore(); //恢复到最初状态
+
+  ctx.save()
+  ctx.translate(100, 100);
+  ctx.rotate(Math.PI / 180 * 45);
+  ctx.scale(0.5,0.5)
+  ctx.fillStyle = "blue";
+  ctx.fillRect(0, 0, 100, 100);
+  ctx.restore()
+}
+// distortion()
+
+/*  透明度  */
+function globalAlpha() {
+  ctx.fillStyle = 'red';
+  ctx.fillRect(10,10,50,50);
+
+  ctx.globalAlpha = 0.5
+  ctx.fillStyle = 'blue'
+  ctx.fillRect(30,30,50,50)
+  ctx.globalAlpha = 0
+}
+// globalAlpha()
+</script>

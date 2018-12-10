@@ -5,24 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    canvas{
+      border:1px solid red
+    }
+  </style>
 </head>
 <body>
-<button id="createBtn">创建</button>
+<canvas id="canvas" width="300" height="300"></canvas>
 </body>
 </html>
 <script>
-  var createLoginLayer = (function () {
-    var div
-    return function (){
-      if(!div){
-        console.log('111111111')
-        div = document.createElement('div')
-      }
-      return div
-    }
-  })()
-  document.querySelector('#createBtn').onclick = function () {
-    let newLayer = createLoginLayer()
-    newLayer.style.display = 'block'
-  }
+const obj = {selector: { to: { toutiao: "FE Coder"} }, target: [1, 2, { name: 'byted'}]}
+
+function get(obj, ...args) {
+    return args.map((item) => (new Function('obj',`try {return obj.${item} } catch(e) {}`))(obj));
+}
+get(obj, 'selector.to.toutiao', 'target[0]', 'target[2].name', 'asd')
 </script>
