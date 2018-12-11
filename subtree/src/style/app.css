@@ -1,0 +1,52 @@
+/* app.vue的样式 */
+@import './common.css';
+
+/** 使 #app 撑开整个页面，这样在#app上监听事件就相对于在body上做了，并且还能让出body上的优先级 */
+html, body, #app{
+  height: 100%;
+}
+
+#app{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.idss-router__container{
+  padding: 0 20px 20px 20px;
+  width: 100%;
+}
+
+/* @FIXME 覆盖elementUI样式 */
+.el-select .el-select__tags {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.el-table__expanded-cell {
+  padding: 20px 10px !important;
+}
+
+/* 临时修改，演示完毕去除图片后即可删除 */
+.temp-img-overflow{
+  overflow: hidden;
+}
+
+.temp-img-overflow img{
+  transform: translateY(-47px);
+}
+.upload-demo ul{
+  display:none;
+}
+.filterRight .el-collapse-item__header{
+  padding-left: 10px
+}
+.filterRight .el-collapse-item__arrow{
+  float: none;
+}
+.filterRules-container .el-table tr{
+  height: 40px
+}
+/*.el-table .cell{*/
+  /*white-space: nowrap!important;*/
+/*}*/

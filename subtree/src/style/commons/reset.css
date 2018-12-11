@@ -1,0 +1,116 @@
+@import './_var.css';
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html {
+  width: 100%;
+  font-size: 62.5%;     /* 10/16*100% */
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+  width: 100%;
+  min-width: 1200px;
+  margin: 0;
+  font-family: "Microsoft YaHei", "PingFang SC", "Helvetica", "Arial", "黑体", "宋体", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.42857143;
+  color: var(--font-color);
+  background-color: var(--color-body-bg);
+  -webkit-font-smoothing: antialiased;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,main,menu,nav,section,summary {
+  display: block;
+}
+audio,canvas,progress,video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],template {
+  display: none;
+}
+i, em, code, u, address {
+  font-style: normal;
+  font-weight: normal;
+}
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  font-weight: normal;
+}
+dl, dt, dd, h1, h2, h3, h4, h5, h6, ul, ol, li, p, pre, header, section, footer, aside, nav, menu, article, figure{
+  padding: 0;
+  margin: 0;
+}
+table {border-spacing: 0;}
+td, th { padding: 0;}
+ul, ol {
+    list-style: none;
+}
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+a:focus,
+input:focus {
+  outline: none;
+}
+b,strong{
+  font-weight: normal;
+}
+
+input,
+button,
+select,
+textarea {
+  resize: none;
+  outline: none;
+}
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+input::-ms-clear {
+  display: none;
+}
+/* 去除预填充 */
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #fff inset; }
+/* placeholder */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: var(--font-sec-color);
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: var(--font-sec-color);
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: var(--font-sec-color);
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: var(--font-sec-color);
+}
