@@ -24,24 +24,66 @@
   // document.querySelector('#createBtn').onclick = function () {
   //   let newLayer = createLoginLayer()
   //   newLayer.style.display = 'block'
+  // // }
+  // [1,2,3,4].forEach((item) => {
+  //   console.log(item)
+  //   if(item === 2) {
+
+  //   }
+  // })
+
+
+  // for (let i =0, len = art,kebt; i < len; i++) {
+  //   ((i) => {
+  //     console.log(i)
+  //     if () {
+  //       re
+  //     }
+  //   })(ary[i])
   // }
-  [1,2,3,4].forEach((item) => {
-    console.log(item)
-    if(item === 2) {
+  // console.log('12323')
 
-    }
-  })
-
-
-  for (let i =0, len = art,kebt; i < len; i++) {
-    ((i) => {
-      console.log(i)
-      if () {
-        re
-      }
-    })(ary[i])
+  class Car{
+  constructor(options) {
+    this.doors = options.doors || 4;
+    this.state = options.state || 'brand new';
+    this.color = options.color || 'white';
   }
-  console.log('12323')
+}
+class Truck {
+  constructor(options) {
+    this.doors = options.doors || 4;
+    this.state = options.state || 'used';
+    this.color = options.color || 'black';
+  }
+}
+class VehicleFactory {
+  createVehicle(options) {
+    if(options.vehicleType === 'car') {
+      return new Car(options);
+    } else if(options.vehicleType === 'truck') {
+      return new Truck(options);
+      }
+  }
+}
+
+const factory = new VehicleFactory();
+const car = factory.createVehicle({
+  vehicleType: 'car',
+  doors: 4,
+  color: 'silver',
+  state: 'Brand New'
+});
+const truck= factory.createVehicle({
+  vehicleType: 'truck',
+  doors: 2,
+  color: 'white',
+  state: 'used'
+});
+// 打印 Car {doors: 4, state: "Brand New", color: "silver"}
+console.log(car);
+// 打印 Truck {doors: 2, state: "used", color: "white"}
+console.log(truck);
 </script>
 
 
