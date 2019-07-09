@@ -8,14 +8,17 @@ import axios from 'axios'
 import store from '@/store'
 import http from '@/plug/http'
 import ElementUI from 'element-ui'
+import VueClipboard from 'vue-clipboard2'
 import 'element-ui/lib/theme-chalk/index.css'
-
+import '@/'
 Vue.config.productionTip = false
+VueClipboard.config.autoSetContainer = true  // 默认复制当前元素
 Vue.prototype.$axios = axios
 Vue.use(VueRouter)
 Vue.use(Chart)
 Vue.use(ElementUI)
 Vue.use(http)
+Vue.use(VueClipboard)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

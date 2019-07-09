@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>study-vue</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>study-vue</title>
 </head>
 <style>
-    /* .content {
+  /* .content {
         width: 1000px;
         height: 1000px;
         position: relative;
@@ -23,20 +23,33 @@
 </style>
 
 <body>
-    <div class="content">
-        <div class="box"></div>
-    </div>
+  <div class="content">
+    <div class="box"></div>
+  </div>
 </body>
 <script>
-  function a (n, p = 1) {
-    if (n === 1) {
-      return p
-    } else {
-      return a(n - 1, n * p)
-    }
+  function text() {
+    var temperature = null
+    var archive = []
+    Object.defineProperty(this, 'temperature', {
+      get: function () {
+        console.log('getData!', this)
+        return temperature
+      },
+      set: function (value) {
+        temperature = value
+        archive.push(temperature)
+      }
+    })
+    this.getArchive = function () { return archive }
   }
-  let bb = a(5)
-  console.log(bb)
+
+  var arc = new text()
+  arc.temperature // 'get!'
+  arc.temperature = 11
+  arc.temperature = 13
+  arc.getArchive() // [{ val: 11 }, { val: 13 }]
+  console.log('dsfsdfs', arc.getArchive())
 </script>
 
 </html>

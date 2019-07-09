@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>八边形</title>
+
+  <style type="text/css">
+    #octagon {
+
+      width: 450px;
+
+      height: 120px;
+
+      background-color: red;
+
+      margin: 150px auto;
+
+      position: relative;
+
+    }
+
+    #octagon:before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -75px;
+
+      width: 300px;
+
+      border-color: transparent transparent red transparent;
+
+      border-width: 0 75px 75px 75px;
+
+      border-style: solid;
+
+    }
+
+    #octagon:after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 120px;
+
+      width: 300px;
+
+      border-color: red transparent transparent transparent;
+
+      border-width: 75px 75px 0 75px;
+
+      border-style: solid;
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="octagon"></div>
+
+</body>
+
+</html>

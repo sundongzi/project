@@ -7,6 +7,12 @@ import deep from '@/components/deep'
 import design from '@/components/design'
 import form from '@/components/form'
 import socket from '@/websocket/socket.vue'
+// import cropper from '@/components/cropper'
+import proxy from '@/components/proxy'
+// import html2Canvas from '@/components/html2-canvas'
+import rightMenu from '@/components/right-menu'
+import directives from '@/components/directives'
+// import clipboard from '@/components/clipboard'
 
 Vue.use(Router)
 
@@ -46,6 +52,36 @@ export default new Router({
       path: '/socket',
       name: 'Socket',
       component: socket
+    },
+    // {
+    //   path: '/cropper',
+    //   name: 'cropper',
+    //   component: cropper
+    // },
+    {
+      path: '/proxy',
+      name: 'proxy',
+      component: proxy
+    },
+    // {
+    //   path: '/html2Canvas',
+    //   name: 'html2-canvas',
+    //   component: html2Canvas
+    // },
+    {
+      path: '/right-menu',
+      name: 'right-menu',
+      component: rightMenu
+    },
+    {
+      path: '/directives',
+      name: 'directives',
+      component: directives
     }
+    // {
+    //   path: '/clipboard',
+    //   name: 'clipboard',
+    //   component: clipboard
+    // }
   ]
 })

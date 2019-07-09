@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #dragContainer {
+      width: 100px;
+      height: 100px;
+      background: red;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="dragContainer"></div>
+</body>
+
+</html>
+<script>
+  var EventUtil = {
+    addHandler: function (element, type, handler) {
+      element.addEventListener(type, handler, false)
+    },
+    getEvent: function (event) {
+      return event ? event : window.event
+    },
+    getTarget: function (event) {
+      return event.target ? event.target : event.srcElement
+    }
+  }
+  var dragDrop = function () {
+    var flag = null
+    var x = 0
+    var y = 0
+    function handlerEvent(event) {
+      event = EventUtil.getEvent(event)
+      var target = EventUtil.getTarget(event)
+      switch (event.type) {
+        case 'mousedown':
+          flag = target;
+          x = event.clientX - target.offsetLeft
+          y = event.clientY - target.offsetTop
+          break
+        case 'mousemove':
+          flag.style.left = (event.clientX - x) + 'px';
+          flag.style.top = (event.clientY - y) + 'px';
+          break
+        case 'mouseup':
+          flag = null
+          break
+      }
+    }
+    return {
+      enable: function () {
+        EventUtil.addHandler(document, 'mousedown', handlerEvent)
+        EventUtil.addHandler(document, 'mousemove', handlerEvent)
+        EventUtil.addHandler(document, 'mouseup', handlerEvent)
+      }
+    }
+  }
+  dragDrop().enable()
+</script>

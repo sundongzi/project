@@ -1,5 +1,11 @@
 <template>
-  <div class="design-container"></div>
+  <div class="design-container">
+    <div class="red">11111</div>
+    <div class="red">22222</div>
+    <div class="red">3333</div>
+    <div class="red">444</div>
+    <p class="red">ppppp</p>
+  </div>
 </template>
 <script>
 export default {
@@ -42,3 +48,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+.design-container{
+  width:500px;
+  height:500px;
+  border:1px solid blue;
+}
+div.red:nth-of-type(1){
+  color:red;
+}
+</style>

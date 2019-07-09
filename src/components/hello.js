@@ -1,9 +1,7 @@
-const text = function () {
-  let a = 1
-  return function () {
-    console.log(a + 1)
+import text from './text'
+export default {
+  extends: text,
+  created () {
+    console.log('hello', this.$attrs)
   }
-}
-export {
-  text
 }

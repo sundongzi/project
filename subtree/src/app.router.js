@@ -34,17 +34,17 @@ const router = new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes
 })
-router.beforeEach((to, from, next) => {
-  if (to.meta.keepAliveFrom && to.meta.keepAliveFrom.includes(from.name)) {
-    to.meta.cache = true
-  }
-  // if (store.getters['base/isLogin$$'] !== 'success' && !to.meta.noRequireAuth) {
-  //   // @FIXME 暂时注释，不限制用户登录
-  //   next({
-  //     path: '/login',
-  //     query: {redirect: to.fullPath}
-  //   })
-  // }
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   // if (to.meta.keepAliveFrom && to.meta.keepAliveFrom.includes(from.name)) {
+//   //   to.meta.cache = true
+//   // }
+//   // if (store.getters['base/isLogin$$'] !== 'success' && !to.meta.noRequireAuth) {
+//   //   // @FIXME 暂时注释，不限制用户登录
+//   //   next({
+//   //     path: '/login',
+//   //     query: {redirect: to.fullPath}
+//   //   })
+//   // }
+//   next()
+// })
 export default router

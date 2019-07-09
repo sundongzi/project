@@ -77,7 +77,6 @@ export default {
         }
       ]
       while (loopList.length) {
-        debugger
         console.log('roroo', root)
         // 深度优先
         const node = loopList.pop()
@@ -162,16 +161,16 @@ export default {
 }
 </script>
 <style scoped>
-.parent{
-  width:200px;
+.parent {
+  width: 200px;
   height: 200px;
   background: blue;
   position: relative;
 }
-.child{
+.child {
   position: absolute;
-  top:50%;
-  left:50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 </style>
