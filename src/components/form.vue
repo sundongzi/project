@@ -1,15 +1,23 @@
 <template>
   <div class="form-container">
-    <el-steps :active="status" finish-status="success" simple style="marginBottom: 20px;">
+    <span v-for="(item, index) in arr" :key="index">
+      {{obj[index]['current'][2]}}
+      {{current[index]}}
+      <el-button @click="link(index)">跳转</el-button>
+    </span>
+    <!-- <el-steps :active="status" finish-status="success" simple style="marginBottom: 20px;">
       <el-step title="步骤 1"></el-step>
       <el-step title="步骤 2"></el-step>
       <el-step title="步骤 3"></el-step>
       <el-step title="步骤 4"></el-step>
-    </el-steps>
+    </el-steps> -->
     <!-- 返回上一步 -->
     <!-- <el-button v-if="canGoBack" @click="goBack">返回上一步</el-button> -->
     <!-- 动态渲染当前状态组件 -->
     <component :is="statusCom" @onChangeStatus="changeStatus" />
+    <!-- <el-button @click="update">更新</el-button> -->
+
+    <span>{{cb}}</span>
   </div>
 </template>
 <script>
@@ -17,6 +25,9 @@ import step1 from './status-components/step1'
 import step2 from './status-components/step2'
 import step3 from './status-components/step3'
 import step4 from './status-components/step4'
+// @Component({
+
+// })
 const DEFAULT_STATUS = 1
 export default {
   name: 'status-form',
@@ -42,11 +53,79 @@ export default {
   },
   data () {
     return {
+      obj: {},
+      arr: [1, 2, 3, 4],
+      current: [],
+      value: '',
+      text: '',
+      options: {
+        'dengyu': '等于',
+        'add': '加号'
+      },
       status: DEFAULT_STATUS
     }
   },
   methods: {
-    createDom () {
+    aa (a) {
+      console.log('aaa', a)
+      return a
+    },
+    update () {
+      this.observe(this.options)
+      console.log('trtrtr', this.options.add)
+    },
+    observe (obj) {
+      if (typeof obj !== 'object') {
+        return
+      }
+      Object.keys(obj).forEach(item => {
+        // this.defineReactive(obj, item, obj[item])
+      })
+    },
+    // defineReactive (obj, key, value) {
+    //   this.observe(value)
+    //   let dp = new Dep()
+    //   Object.defineProperty(obj, key, {
+    //     enumerable: true,
+    //     configurable: true,
+    //     get: function getVal () {
+    //       if(Dep.target){
+    //        dp.addSub(Dep.target)
+    //       }
+    //       return value
+    //       console.log('value', value)
+    //     },
+    //     set: function setVal (newVal) {
+    //       this.observe(newVal)
+    //       if (newVal !== value) {
+    //         console.log('render', value)
+    //         this.render()
+    //         value = newVal
+    //         dp.notify()
+    //       }
+    //     }
+    //   })
+    // },
+    render () {
+      console.log('视图渲染了')
+    },
+    link (index) {
+      this.obj[index]['color'] = '11111'
+      this.$set(this.current, index, '0000')
+      console.log('fsdfdsf', this.current[index])
+
+      // window.history.pushState(null, null, {path: 'http://localhost:8080/config/database-tactics?_r=1563350400888'})
+      // window.location.hash = 'http://localhost:8080/config/database-tactics?_r=1563350400888'
+    },
+    proxyTest () {
+      let proxyTarget = {
+        get (targetVal, key) {
+          if (typeof targetVal[key] === 'object') {
+            return new Proxy(targetVal[key], proxyTarget)
+          }
+          return Reflect.get(targetVal, key)
+        }
+      }
     },
     changeStatus (val) {
       this.cache.push(val)
@@ -60,1044 +139,73 @@ export default {
     }
   },
   created () {
-    let data = {
-      "RECORDS": [
-        {
-          "ID": "source.schema00000000000001",
-          "VERSION": "0",
-          "NAME": "schema",
-          "CODE": "source.schema",
-          "VALUE": "default",
-          "VALUETEXT": "默认",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "source.schema00000000000002",
-          "VERSION": "0",
-          "NAME": "schema",
-          "CODE": "source.schema",
-          "VALUE": "all",
-          "VALUETEXT": "全部",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "source.schema00000000000003",
-          "VERSION": "0",
-          "NAME": "schema",
-          "CODE": "source.schema",
-          "VALUE": "custom",
-          "VALUETEXT": "自定义",
-          "SORTCODE": "3",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceBaseType0000000000001",
-          "VERSION": "0",
-          "NAME": "数据源类型[文件、数据库]",
-          "CODE": "source.baseType",
-          "VALUE": "DB",
-          "VALUETEXT": "数据源",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceBaseType0000000000002",
-          "VERSION": "0",
-          "NAME": "数据源类型[文件、数据库]",
-          "CODE": "source.baseType",
-          "VALUE": "FILE",
-          "VALUETEXT": "文件源",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceCharset000000000000001",
-          "VERSION": "0",
-          "NAME": "字符集",
-          "CODE": "source.charset",
-          "VALUE": "UTF-8",
-          "VALUETEXT": "UTF-8",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceCharset000000000000002",
-          "VERSION": "0",
-          "NAME": "字符集",
-          "CODE": "source.charset",
-          "VALUE": "IS08859-1",
-          "VALUETEXT": "IS08859-1",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceCharset000000000000003",
-          "VERSION": "0",
-          "NAME": "字符集",
-          "CODE": "source.charset",
-          "VALUE": "GBK",
-          "VALUETEXT": "GBK",
-          "SORTCODE": "3",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceCharset000000000000004",
-          "VERSION": "0",
-          "NAME": "字符集",
-          "CODE": "source.charset",
-          "VALUE": "GB2312",
-          "VALUETEXT": "GB2312",
-          "SORTCODE": "4",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceSourceType0000000000001",
-          "VERSION": "0",
-          "NAME": "数据源类型",
-          "CODE": "source.sourceType",
-          "VALUE": "FTP",
-          "VALUETEXT": "FTP服务器",
-          "SORTCODE": "1",
-          "PARENTID": "sourceBaseType0000000000002",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceSourceType0000000000002",
-          "VERSION": "0",
-          "NAME": "数据源类型",
-          "CODE": "source.sourceType",
-          "VALUE": "XFTP",
-          "VALUETEXT": "XFTP服务器",
-          "SORTCODE": "2",
-          "PARENTID": "sourceBaseType0000000000002",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sourceSourceType000000000db01",
-          "VERSION": "0",
-          "NAME": "数据源类型",
-          "CODE": "source.sourceType",
-          "VALUE": "MYSQL",
-          "VALUETEXT": "MYSQL服务器",
-          "SORTCODE": "1",
-          "PARENTID": "sourceBaseType0000000000001",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyCompareType0000000001",
-          "VERSION": "0",
-          "NAME": "比较方式",
-          "CODE": "strategy.compareType",
-          "VALUE": "GT",
-          "VALUETEXT": "大于",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyCompareType0000000002",
-          "VERSION": "0",
-          "NAME": "比较方式",
-          "CODE": "strategy.compareType",
-          "VALUE": "LT",
-          "VALUETEXT": "小于",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFieldType0000000000001",
-          "VERSION": "0",
-          "NAME": "数据类型",
-          "CODE": "strategy.fieldType",
-          "VALUE": "FILE",
-          "VALUETEXT": "文件型",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFieldType0000000000002",
-          "VERSION": "0",
-          "NAME": "数据类型",
-          "CODE": "strategy.fieldType",
-          "VALUE": "INTEGER",
-          "VALUETEXT": "整型",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFieldType0000000000003",
-          "VERSION": "0",
-          "NAME": "数据类型",
-          "CODE": "strategy.fieldType",
-          "VALUE": "FLOAT",
-          "VALUETEXT": "浮点型",
-          "SORTCODE": "3",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFieldType0000000000004",
-          "VERSION": "0",
-          "NAME": "数据类型",
-          "CODE": "strategy.fieldType",
-          "VALUE": "TIMESTAMP",
-          "VALUETEXT": "时间戳",
-          "SORTCODE": "4",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFieldType0000000000005",
-          "VERSION": "0",
-          "NAME": "数据类型",
-          "CODE": "strategy.fieldType",
-          "VALUE": "DATE",
-          "VALUETEXT": "日期型",
-          "SORTCODE": "5",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000001",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "HTML",
-          "VALUETEXT": "html",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000002",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "XML",
-          "VALUETEXT": "xml",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000003",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "PDF",
-          "VALUETEXT": "pdf",
-          "SORTCODE": "3",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000004",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "RAR",
-          "VALUETEXT": "rar",
-          "SORTCODE": "4",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000005",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "7Z",
-          "VALUETEXT": "7z",
-          "SORTCODE": "5",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000006",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "ZIP",
-          "VALUETEXT": "zip",
-          "SORTCODE": "6",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000007",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "TAR",
-          "VALUETEXT": "tar",
-          "SORTCODE": "7",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000008",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "TXT",
-          "VALUETEXT": "txt",
-          "SORTCODE": "8",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000009",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "WORD",
-          "VALUETEXT": "word",
-          "SORTCODE": "9",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000010",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "EXCEL",
-          "VALUETEXT": "excel",
-          "SORTCODE": "10",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000011",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "PPT",
-          "VALUETEXT": "ppt",
-          "SORTCODE": "11",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000012",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "MAG",
-          "VALUETEXT": "mag",
-          "SORTCODE": "12",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000013",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "VSD",
-          "VALUETEXT": "vsd",
-          "SORTCODE": "13",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyFileExtention00000000014",
-          "VERSION": "0",
-          "NAME": "文件类型",
-          "CODE": "strategy.fileExtention",
-          "VALUE": "MPP",
-          "VALUETEXT": "mpp",
-          "SORTCODE": "14",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyIsSystem0000000000001",
-          "VERSION": "0",
-          "NAME": "模板系统类型",
-          "CODE": "strategy.isSystem",
-          "VALUE": "DEFAULT",
-          "VALUETEXT": "默认",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyIsSystem0000000000002",
-          "VERSION": "0",
-          "NAME": "模板系统类型",
-          "CODE": "strategy.isSystem",
-          "VALUE": "CUSTOM",
-          "VALUETEXT": "自定义",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyMatchType0000000000001",
-          "VERSION": "0",
-          "NAME": "匹配方式",
-          "CODE": "strategy.matchType",
-          "VALUE": "CONTAIN",
-          "VALUETEXT": "包含",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyMatchType0000000000002",
-          "VERSION": "0",
-          "NAME": "匹配方式",
-          "CODE": "strategy.matchType",
-          "VALUE": "EQUAL",
-          "VALUETEXT": "等于",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyMatchType0000000000003",
-          "VERSION": "0",
-          "NAME": "匹配方式",
-          "CODE": "strategy.matchType",
-          "VALUE": "STARTWITH",
-          "VALUETEXT": "以该文字开始",
-          "SORTCODE": "3",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyMatchType0000000000004",
-          "VERSION": "0",
-          "NAME": "匹配方式",
-          "CODE": "strategy.matchType",
-          "VALUE": "ENDWITH",
-          "VALUETEXT": "以该文字结束",
-          "SORTCODE": "4",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyMatchType0000000000005",
-          "VERSION": "0",
-          "NAME": "匹配方式",
-          "CODE": "strategy.matchType",
-          "VALUE": "REGEXP",
-          "VALUETEXT": "正则表达式",
-          "SORTCODE": "5",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyRiskLevel0000000000001",
-          "VERSION": "0",
-          "NAME": "严重程度",
-          "CODE": "strategy.riskLevel",
-          "VALUE": "high",
-          "VALUETEXT": "高",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyRiskLevel0000000000002",
-          "VERSION": "0",
-          "NAME": "严重程度",
-          "CODE": "strategy.riskLevel",
-          "VALUE": "middle",
-          "VALUETEXT": "中",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyRiskLevel0000000000003",
-          "VERSION": "0",
-          "NAME": "严重程度",
-          "CODE": "strategy.riskLevel",
-          "VALUE": "low",
-          "VALUETEXT": "低",
-          "SORTCODE": "3",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyStrategyType000000000001",
-          "VERSION": "0",
-          "NAME": "策略类型",
-          "CODE": "strategy.strategyType",
-          "VALUE": "DB",
-          "VALUETEXT": "数据库策略",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "strategyStrategyType000000000002",
-          "VERSION": "0",
-          "NAME": "策略类型",
-          "CODE": "strategy.strategyType",
-          "VALUE": "FILE",
-          "VALUETEXT": "文件策略",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sys.yesOrNo0000000000000001",
-          "VERSION": "0",
-          "NAME": "是否",
-          "CODE": "sys.yesOrNo",
-          "VALUE": "Y",
-          "VALUETEXT": "是",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "sys.yesOrNo0000000000000002",
-          "VERSION": "0",
-          "NAME": "是否",
-          "CODE": "sys.yesOrNo",
-          "VALUE": "N",
-          "VALUETEXT": "否",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.scanMethod000000000001",
-          "VERSION": "0",
-          "NAME": "扫描方式 ",
-          "CODE": "task.scanMethod",
-          "VALUE": "all",
-          "VALUETEXT": "全表、文件扫描",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.scanMethod000000000002",
-          "VERSION": "0",
-          "NAME": "扫描方式 ",
-          "CODE": "task.scanMethod",
-          "VALUE": "demo",
-          "VALUETEXT": "样本",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.scanType000000000000001",
-          "VERSION": "0",
-          "NAME": "扫描类型",
-          "CODE": "task.scanType",
-          "VALUE": "increment",
-          "VALUETEXT": "增量",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.scanType000000000000002",
-          "VERSION": "0",
-          "NAME": "扫描类型",
-          "CODE": "task.scanType",
-          "VALUE": "fullDose",
-          "VALUETEXT": "全量",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.startNow0000000000000001",
-          "VERSION": "0",
-          "NAME": "执行方式",
-          "CODE": "task.startNow",
-          "VALUE": "now",
-          "VALUETEXT": "立即",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.startNow0000000000000002",
-          "VERSION": "0",
-          "NAME": "执行方式",
-          "CODE": "task.startNow",
-          "VALUE": "custom",
-          "VALUETEXT": "自定义",
-          "SORTCODE": "2",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.status0000000000000000001",
-          "VERSION": "0",
-          "NAME": "任务执行状态",
-          "CODE": "task.status",
-          "VALUE": "executory",
-          "VALUETEXT": "执行中",
-          "SORTCODE": "1",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.status0000000000000000002",
-          "VERSION": "0",
-          "NAME": "任务执行状态",
-          "CODE": "task.status",
-          "VALUE": "pause",
-          "VALUETEXT": "暂停",
-          "SORTCODE": "0",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.status0000000000000000003",
-          "VERSION": "0",
-          "NAME": "任务执行状态",
-          "CODE": "task.status",
-          "VALUE": "stop",
-          "VALUETEXT": "停止",
-          "SORTCODE": "0",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.status0000000000000000004",
-          "VERSION": "0",
-          "NAME": "任务执行状态",
-          "CODE": "task.status",
-          "VALUE": "complete",
-          "VALUETEXT": "完成",
-          "SORTCODE": "0",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.status0000000000000000005",
-          "VERSION": "0",
-          "NAME": "任务执行状态",
-          "CODE": "task.status",
-          "VALUE": "notBegin",
-          "VALUETEXT": "未开始",
-          "SORTCODE": "0",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        },
-        {
-          "ID": "task.status0000000000000000006",
-          "VERSION": "0",
-          "NAME": "任务执行状态",
-          "CODE": "task.status",
-          "VALUE": "abnormal",
-          "VALUETEXT": "异常终止",
-          "SORTCODE": "0",
-          "PARENTID": "",
-          "ISENABLED": "Y",
-          "ISDEFAULT": "N",
-          "ISSYSTEM": "N",
-          "CREATEUSER": "",
-          "CREATETIME": "",
-          "UPDATEUSER": "",
-          "UPDATETIME": ""
-        }
-      ]
-    }
-
-    let aa = data.RECORDS.reduce((prev, item) => {
-      let key = item.CODE
-      if (key in prev) {
-        prev[key].push(
-          {
-            value: item.VALUE,
-            valueText: item.VALUETEXT
-          }
-        )
-        // if (value in prev[key]) {
-
-        // } else {
-        //   let arr = []
-        //   arr.push({
-        //     value: item.VALUE,
-        //     valueText: item.VALUETEXT
-        //   })
-        //   prev[key][value] = arr
-        // }
-      } else {
-        prev[key] = [
-          {
-            value: item.VALUE,
-            valueText: item.VALUETEXT
-          }
-        ]
+    this.arr.forEach((item, index) => {
+      this.obj[index] = {
+        current: [1, 2, 3],
+        color: ''
       }
-      return prev
-    }, {})
-    console.log(JSON.stringify(aa))
+      this.current.push('12345')
+    })
   }
+  // created () {
+  //   class Dep {
+  //     constructor (sub) {
+  //       this.subs = []
+  //     }
+  //     addSub (sub) {
+  //       this.subs.push(sub)
+  //     }
+  //     notify () {
+  //       this.subs.forEach(item => {
+  //         item.update()
+  //       })
+  //     }
+  //   }
+  //   class Watcher {
+  //     constructor (obj, key, cb) {
+  //       Dep.target = this
+  //       this.cb = cb
+  //       this.obj = obj
+  //       this.key = key
+  //       this.value = obj[key]
+  //       Dep.target = null
+  //     }
+  //     update () {
+  //       this.value = this.obj[this.key]
+  //       this.cb(this.value)
+  //     }
+  //   }
+  //   class Vue {
+  //     constructor (options) {
+  //       this._data = options.data
+  //       this.observe(this._data)
+  //       new Watcher()
+  //     }
+  //   }
+  //   // let name = new Project('sundong')
+  //   // console.log(name.sayName())
+  //   // console.log(name instanceof Project)
+
+  //   // function Parent (name, age) {
+  //   //   this.name = name
+  //   //   this.age = age
+  //   // }
+  //   // Parent.prototype.sayName = function () {
+  //   //   console.log('dayin', this.name)
+  //   // }
+  //   // function Child (name, age) {
+  //   //   Parent.call(this, name, age)
+  //   // }
+  //   // Child.prototype = Object.create(Parent.prototype, {
+  //   //   constructor: {
+  //   //     value: Child,
+  //   //     enumerable: true,
+  //   //     writable: true,
+  //   //     configurable: true
+  //   //   }
+  //   // })
+  //   // let child = new Child('sundong', 24)
+  //   // console.log(child.sayName())
+  // }
 }
 </script>
