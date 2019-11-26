@@ -14,9 +14,3 @@ var server = net.createServer((socket) => {
 })
 server.listen(8543, 'localhost')
 console.log('TCP服务器已创建！')
-
-// var process = require('child_process')
-process.on('message', function (m) {
-  console.log('message from parent: ' + JSON.stringify(m));
-});
-process.send({ from: 'child' });

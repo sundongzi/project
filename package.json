@@ -11,13 +11,12 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node config/index.js"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.6",
-    "express": "^4.17.1",
     "immutable": "^3.8.2",
     "jsonfile": "^5.0.0",
     "koa": "^2.6.1",
@@ -26,9 +25,7 @@
     "socket.io": "^2.1.1",
     "uws": "^99.0.0",
     "vue": "^2.5.2",
-    "vue-multiselect": "^2.1.6",
     "vue-router": "^3.0.1",
-    "vue-server-renderer": "^2.6.10",
     "websocket": "^1.0.28",
     "ws": "^6.1.0"
   },
