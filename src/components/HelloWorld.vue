@@ -20,7 +20,7 @@ export default {
       message: '新复制的内容',
       obj: {
         title: '标题',
-        name: '名字'
+        name: '名字123'
       }
     }
   },
