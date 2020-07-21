@@ -3,8 +3,16 @@
 
   </div>
 </template>
-<script lang="postcss">
+<script>
 export default {
-
+  name: 'css',
+  data () {
+    return {
+      num: 0
+    }
+  },
+  created () {
+    console.log('css-created')
+  }
 }
 </script>
