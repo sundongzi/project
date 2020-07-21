@@ -11,11 +11,14 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node config/index.js"
+    "build": "node config/index.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+    "commit": "git-cz"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "commander": "^5.1.0",
+    "commitizen": "^4.1.2",
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
