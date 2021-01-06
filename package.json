@@ -16,7 +16,7 @@
     "commit": "git-cz"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "commander": "^5.1.0",
     "commitizen": "^4.1.2",
     "echarts": "^4.2.0-rc.2",
