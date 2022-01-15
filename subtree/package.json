@@ -93,7 +93,7 @@
     "rimraf": "^2.6.0",
     "scroller": "^0.0.3",
     "semver": "^5.4.1",
-    "shelljs": "^0.7.6",
+    "shelljs": "^0.8.5",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
     "url-loader": "^0.5.8",
